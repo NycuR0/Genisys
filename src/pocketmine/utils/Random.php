@@ -66,11 +66,12 @@ class Random{
 	 * @return int
 	 */
 	public function nextSignedInt(){
-		$t = ((($this->seed * 65535) + 31337) >> 8) + 1337;
+		$t = (($this->seed + 31337) >> 8) + 1337;
 		if(PHP_INT_SIZE === 8){
 			$t = $t << 32 >> 32;
 		}
 		$this->seed ^= $t;
+		$this->seed += 1337;
 
 		return $t;
 	}
